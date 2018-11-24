@@ -1,0 +1,25 @@
+<div class="container">
+<div *ngIf="articles">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>User Name</td>
+        <td>Article</td>
+        <td>Created At</td>
+        <td>Updated At</td>
+      </tr>
+    </thead>
+    <tr *ngFor="let article of articles">
+      <td>{{ article.id }}</td>
+      <td> {{ article.user_name }} </td>
+      <td>{{article.article}}</td>
+      <td>{{article.created_at}}</td>
+      <td>{{article.updated_at}}</td>
+    </tr>
+  </table>
+</div>
+<div class="alert alert-danger" *ngIf="error">
+  {{error}}
+</div>
+</div>

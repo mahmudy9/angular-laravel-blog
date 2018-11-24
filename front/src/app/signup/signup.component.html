@@ -1,0 +1,48 @@
+<div class="row jsutify-content-center">
+  <div class="col-sm-8">
+    <div class="alert alert-danger" *ngIf="errorMsg">
+      {{errorMsg}}
+    </div>
+    <div class="alert alert-success" *ngIf="success">
+      {{success}}
+    </div>
+    <form #signupform="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input type="email" class="form-control" name="name" #nameM="ngModel" [(ngModel)]="Signupform.name" placeholder="Enter name"
+          required>
+        <div class="text-danger" [class.d-none]="nameM.valid  || nameM.untouched">Name field is invalid</div>
+        <div class="text-danger" [class.d-none]="!error.name">{{error.name}}</div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" name="email" #emailM="ngModel" [(ngModel)]="Signupform.email" placeholder="Enter email"
+          required>
+        <div class="text-danger" [class.d-none]="emailM.valid  || emailM.untouched">Email field is invalid</div>
+        <div class="text-danger" [class.d-none]="!error.email">{{error.email}}</div>
+        </div>
+        
+      
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" name="pass" #passM="ngModel" [(ngModel)]="Signupform.password" placeholder="Password"
+            required>
+          <div [class.d-none]="passM.valid || passM.untouched" class="text-danger">The password field is invalid</div>
+          <div class="text-danger" [class.d-none]="!error.password">{{error.password}}</div>
+          </div>
+
+        
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password Confirmation</label>
+          <input type="password" class="form-control" name="cpass" #cpassM="ngModel" [(ngModel)]="Signupform.password_confirmation" placeholder="Password"
+            required>
+          <div [class.d-none]="cpassM.untouched || cpassM.value == passM.value" class="text-danger">The password confirmation field is invalid</div>
+          <div class="text-danger" [class.d-none]="!error.password_confirmation">{{error.password_confirmation}}</div>
+          
+
+        </div>
+        <button [disabled]="signupform.form.invalid || submitted || cpassM.value != passM.value" type="submit" class="btn btn-primary">Sign Up</button>
+      
+    </form>
+  </div>
+</div>

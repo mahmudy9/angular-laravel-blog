@@ -1,0 +1,62 @@
+
+<br>
+<br>
+<hr>
+<input type="file" (change)="onChange($event)" #fileimage />
+<button type="button" class="btn btn-primary" (click)="upload()" >upload</button>
+<br>
+<br>
+<div class="alert alert-success" [class.d-none]="!done" >Image {{imageName}} have been  uploaded</div>
+<div class="alert alert-danger" [class.d-none]="!error" >Error "{{error}}" uploading image {{imageName}} </div>
+
+<br>
+<br>
+<div *ngIf="images" >
+    <table class="table">
+        <thead>
+            <tr>
+                <td>
+                    image
+                </td>
+                <td>
+                    createdAt
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let image of images">
+            <td><a [href]="image.image" target="_blank" ><img [src]="image.image" width="150" height="150" /></a></td>
+            <td>{{image.created_at}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<div *ngIf="articles">
+
+<h3>My Articles</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>User Name</td>
+                <td>Article</td>
+                <td>Created At</td>
+                <td>Updated At</td>
+                <td>Edit</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+        <tr *ngFor="let article of articles">
+            <td>{{ article.id }}</td>
+            <td> {{ article.user_name }} </td>
+            <td>{{article.article}}</td>
+            <td>{{article.created_at}}</td>
+            <td>{{article.updated_at}}</td>
+            <td><a href="#" class="link" (click)="edit(article.id)" >Edit</a></td>
+            <td><a href="#" class="link" (click)="delete(article.id)">Delete</a></td>
+        </tr>
+    </table>
+
+</div>

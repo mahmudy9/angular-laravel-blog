@@ -1,0 +1,18 @@
+<div class="row jsutify-content-center">
+  <div class="col-sm-8">
+    <div class="alert alert-danger" *ngIf="errorMsg">
+      {{errorMsg}}
+    </div>
+<form #loginform="ngForm" (ngSubmit)="onSubmit()" >
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" name="email" #emaill="ngModel" [(ngModel)]="Loginform.email" placeholder="Enter email" required>
+    <div class="text-danger" [class.d-none]="emaill.valid  || emaill.untouched">Email field is invalid</div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" name="pass"  #passs="ngModel" [(ngModel)]="Loginform.password" placeholder="Password" required>
+    <div [class.d-none]="passs.valid || passs.untouched" class="text-danger">The password field is invalid</div>
+  </div>
+  <button [disabled]="loginform.form.invalid || submitted" type="submit" class="btn btn-primary">Submit</button>
+</div></form>
+</div></div>

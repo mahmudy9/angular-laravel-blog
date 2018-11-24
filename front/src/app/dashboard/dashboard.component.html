@@ -1,0 +1,77 @@
+<div [class.d-none]="images" >
+  <table class="table">
+    <thead>
+      <tr>
+        <td>
+          image
+        </td>
+        <td>
+          createdAt
+        </td>
+        <td>
+          Delete
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <div [class.d-none]="deleted" class="alert alert-success">image deleted</div>
+      <tr *ngFor="let image of images" [id]="imagee+image.id" >
+
+        <td><a [href]="image.image" target="_blank"><img [src]="image.image" width="150" height="150" /></a></td>
+        <td>{{image.created_at}}</td>
+        <td><button type="button" class="btn btn-danger" (click)="deleteImage(image.id)" >Delete Image</button>
+        </td>
+
+        </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+<br>
+<hr>
+
+<div class="container">
+      <div>
+        <form>
+        <textarea class="form-control" #textarea="ngModel" name="body" [(ngModel)]="Article.body" rows="5" ></textarea>
+        <button class="btn btn-primary" (click)="addArticle()" >Add article</button>
+      </form>
+      </div>
+</div>
+      <div *ngIf="articles">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>ID</td>
+              <td>User Name</td>
+              <td>Article</td>
+              <td>Created At</td>
+              <td>Updated At</td>
+              <td>Edit</td>
+              <td>Delete</td>
+            </tr>
+          </thead>
+          <div class="alert alert-info" [class.d-none]="edit" >
+            <textarea class="form-control" name="body" [(ngModel)]="editarticle.body"></textarea>
+            <p>{{errorsupdating}}</p>
+            <br>
+            <button class="btn btn-success" id="update" >Update Article</button>  
+          </div>
+
+          <tr *ngFor="let article of articles" [id]="articlee+article.id" >
+            <td>{{ article.id }}</td>
+            <td> {{ article.user_name }} </td>
+            <td>{{article.article}}</td>
+            <td>{{article.created_at}}</td>
+            <td>{{article.updated_at}}</td>
+            <td><button class="btn btn-info" (click)="editArticle(article.id)" >Edit Article</button></td>
+            <td><button class="btn btn-danger" (click)="deleteArticle(article.id)" >Delete Article</button> </td>
+          </tr>
+          
+        </table>
+      </div>
+      <div class="alert alert-danger" *ngIf="error">
+        {{error}}
+      </div>
+
+   
